@@ -1,0 +1,29 @@
+{
+  "name": "file-finder-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for file finding functionality with HTTP server support",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "start:http": "node build/index-http.js",
+    "dev": "tsc && node build/index.js",
+    "dev:http": "tsc && node build/index-http.js",
+    "start:python": "python main.py"
+  },
+  "keywords": [
+    "mcp",
+    "file-finder"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.19",
+    "typescript": "^5.7.3"
+  }
+}
