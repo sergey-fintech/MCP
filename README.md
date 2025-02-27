@@ -219,6 +219,3 @@ http://localhost:8080/search?q=.json
 - `package.json` - Описание пакета и зависимости
 - `main.py` - HTTP сервер на Python для поиска файлов
 - `README.md` - Документация проекта (этот файл)
-
-### Директория file-finder-mcp
-- Содержит только README.md с документацией
