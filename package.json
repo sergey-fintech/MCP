@@ -1,20 +1,24 @@
 {
-  "name": "file-finder-mcp",
+  "name": "speech-to-text-mcp",
   "version": "1.0.0",
-  "description": "MCP server for file finding functionality with HTTP server support",
+  "description": "MCP server for speech-to-text voice commands in VSCode",
   "main": "build/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
     "start:http": "node build/index-http.js",
+    "start:speech": "node build/index-speech.js",
     "dev": "tsc && node build/index.js",
     "dev:http": "tsc && node build/index-http.js",
+    "dev:speech": "tsc && node build/index-speech.js",
     "start:python": "python main.py"
   },
   "keywords": [
     "mcp",
-    "file-finder"
+    "file-finder",
+    "speech-to-text",
+    "voice-commands"
   ],
   "author": "",
   "license": "ISC",

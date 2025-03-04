@@ -219,3 +219,161 @@ http://localhost:8080/search?q=.json
 - `package.json` - Описание пакета и зависимости
 - `main.py` - HTTP сервер на Python для поиска файлов
 - `README.md` - Документация проекта (этот файл)
+
+# Speech-to-Text MCP Server
+
+This is a Model Context Protocol (MCP) server that provides speech-to-text functionality for voice commands in VSCode. It allows you to transcribe audio to text and execute voice commands.
+
+## Prerequisites
+
+- Node.js (version 14 or higher)
+- npm (version 6 or higher)
+- Python 3.6 or higher
+- PyTorch
+- faster-whisper
+
+## Installation
+
+1. Clone or download this repository
+2. Navigate to the project directory
+3. Install Node.js dependencies:
+   ```
+   npm install
+   ```
+4. Install Python dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+5. Build the project:
+   ```
+   npm run build
+   ```
+
+## Running the Server
+
+The project provides several options for running the MCP server:
+
+### Option 1: Direct MCP Server
+
+You can run the speech-to-text MCP server directly with Node.js:
+
+```
+npm run start:speech
+```
+
+or
+
+```
+node build/index-speech.js
+```
+
+This will start the server, and it will wait for JSON-RPC requests on stdin/stdout.
+
+### Option 2: Integration with VS Code (Cline Extension)
+
+To integrate the server with VS Code and the Cline extension:
+
+1. Find the MCP settings file:
+   - Windows: `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
+   - macOS: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+   - Linux: `~/.config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+
+2. Add the following configuration to the `mcpServers` object in the settings file:
+
+```json
+"speech-to-text-mcp": {
+  "command": "node",
+  "args": ["<FULL_PATH_TO_PROJECT>/build/index-speech.js"],
+  "disabled": false,
+  "autoApprove": []
+}
+```
+
+Replace `<FULL_PATH_TO_PROJECT>` with the actual path to your project directory.
+
+3. Restart VS Code to load the updated settings.
+
+## Available Tools
+
+The speech-to-text MCP server provides two tools:
+
+- `transcribe_audio`: Transcribes audio to text using fastWhisper
+  - Parameters:
+    - `audio_data` (string, required): Base64 encoded audio data
+    - `audio_format` (string, optional, default: "wav"): Audio format (e.g., wav, mp3)
+
+- `execute_voice_command`: Executes a voice command in VSCode
+  - Parameters:
+    - `audio_data` (string, required): Base64 encoded audio data
+    - `audio_format` (string, optional, default: "wav"): Audio format (e.g., wav, mp3)
+
+## Example Usage
+
+```
+<use_mcp_tool>
+<server_name>speech-to-text-mcp</server_name>
+<tool_name>transcribe_audio</tool_name>
+<arguments>
+{
+  "audio_data": "<BASE64_ENCODED_AUDIO>",
+  "audio_format": "wav"
+}
+</arguments>
+</use_mcp_tool>
+```
+
+This example transcribes the provided audio data to text.
+
+```
+<use_mcp_tool>
+<server_name>speech-to-text-mcp</server_name>
+<tool_name>execute_voice_command</tool_name>
+<arguments>
+{
+  "audio_data": "<BASE64_ENCODED_AUDIO>",
+  "audio_format": "wav"
+}
+</arguments>
+</use_mcp_tool>
+```
+
+This example executes a voice command based on the transcribed audio.
+
+## Supported Voice Commands
+
+The speech-to-text MCP server supports the following voice commands:
+
+- "Open file [filename]" or "Find file [filename]": Searches for a file with the specified name
+- "Create new file [filename]": Creates a new file with the specified name
+- "Save" or "Save file": Saves the current file
+- "Close file": Closes the current file
+- "Undo": Undoes the last action
+- "Redo": Redoes the last action
+
+## Troubleshooting
+
+- If you get a "No connection found for server" error, make sure you've restarted VS Code after updating the MCP settings.
+- If the server doesn't respond, check that the path in the MCP settings is correct and points to the built JavaScript file.
+- Make sure the server is properly built by running `npm run build` before attempting to use it.
+- If you encounter issues with the speech recognition, check that you have installed all the required Python dependencies.
+- Make sure the audio data is properly encoded in base64 format.
+
+## Python Speech-to-Text Script (speech_to_text.py)
+
+The project includes a Python script `speech_to_text.py` that uses faster-whisper to transcribe audio files. This script is called by the MCP server to perform speech-to-text conversion.
+
+### Running the Script Directly
+
+You can run the script directly to transcribe an audio file:
+
+```
+python speech_to_text.py path/to/audio/file.wav
+```
+
+By default, the script uses the "base" model size. You can specify a different model size using the `--model` parameter:
+
+```
+python speech_to_text.py path/to/audio/file.wav --model medium
+```
+
+Available model sizes are: tiny, base, small, medium, large.
