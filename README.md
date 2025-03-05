@@ -6,6 +6,8 @@
 
 ## File Finder MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@sergey-fintech/MCP)](https://smithery.ai/server/@sergey-fintech/MCP)
+
 Это сервер Model Context Protocol (MCP), который предоставляет функциональность поиска файлов. Он позволяет искать файлы, содержащие указанный текстовый фрагмент в их именах.
 
 ### Предварительные требования
@@ -16,6 +18,15 @@
 
 ### Установка
 
+### Установка через Smithery
+
+Для автоматической установки File Finder для Claude Desktop с помощью [Smithery](https://smithery.ai/server/@sergey-fintech/MCP):
+
+```bash
+npx -y @smithery/cli install @sergey-fintech/MCP --client claude
+```
+
+### Установка вручную
 1. Клонируйте или скачайте этот репозиторий
 2. Перейдите в директорию проекта
 3. Установите зависимости:
