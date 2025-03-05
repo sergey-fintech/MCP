@@ -1,20 +1,27 @@
 {
   "name": "file-finder-mcp",
   "version": "1.0.0",
-  "description": "MCP server for file finding functionality with HTTP server support",
+  "description": "MCP server for file finding functionality and speech-to-text with HTTP server support",
   "main": "build/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
     "start:http": "node build/index-http.js",
+    "start:whisper": "node build/whisper-index.js",
+    "start:whisper:http": "node build/whisper-index-http.js",
     "dev": "tsc && node build/index.js",
     "dev:http": "tsc && node build/index-http.js",
-    "start:python": "python main.py"
+    "dev:whisper": "tsc && node build/whisper-index.js",
+    "dev:whisper:http": "tsc && node build/whisper-index-http.js",
+    "start:python": "python main.py",
+    "start:whisper:python": "python whisper_server.py"
   },
   "keywords": [
     "mcp",
-    "file-finder"
+    "file-finder",
+    "whisper",
+    "speech-to-text"
   ],
   "author": "",
   "license": "ISC",
