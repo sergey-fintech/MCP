@@ -4,6 +4,10 @@
 1. File Finder MCP - для поиска файлов
 2. Whisper STT MCP - для преобразования речи в текст
 
+<a href="https://glama.ai/mcp/servers/yltkvxvsux">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/yltkvxvsux/badge" alt="File Finder Server MCP server" />
+</a>
+
 ## File Finder MCP Server
 
 Это сервер Model Context Protocol (MCP), который предоставляет функциональность поиска файлов. Он позволяет искать файлы, содержащие указанный текстовый фрагмент в их именах.
@@ -75,7 +79,7 @@ node build/index.js
 
 1. Найдите файл настроек MCP:
    - Windows: `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
-   - macOS: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+   - macOS: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings\cline_mcp_settings.json`
    - Linux: `~/.config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
 
 2. Добавьте следующую конфигурацию в объект `mcpServers` в файле настроек:
@@ -355,7 +359,7 @@ MCP сервер предоставляет один инструмент:
 - Если сервер не отвечает, проверьте, что путь в настройках MCP правильный и указывает на собранный JavaScript файл.
 - Убедитесь, что сервер правильно собран, выполнив `npm run build` перед попыткой его использования.
 - Для использования HTTP прокси убедитесь, что соответствующий HTTP сервер запущен (на порту 8080 для file-finder или 8081 для whisper-stt).
-- Если возникают проблемы с faster-whisper, убедитесь, что библиотека правильно установлена и у вас есть необходимые зависимости для работы с GPU (если вы используете GPU).
+- Если возникают проблемы с faster-whisper, убедитесь, что библиотека правильно установлена и у вас есть необходимые_dependencies для работы с GPU (если вы используете GPU).
 
 ## Структура проекта
 
